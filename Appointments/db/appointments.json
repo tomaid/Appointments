@@ -1,0 +1,52 @@
+{
+  "appointments": [
+    {
+      "pacientid": "1",
+      "medicid": "2",
+      "data": "24062021",
+      "ora": "9",
+      "aprobare": "2",
+      "id": 1
+    },
+    {
+      "pacientid": "3",
+      "medicid": "2",
+      "data": "19052021",
+      "ora": "10",
+      "aprobare": "0",
+      "id": 2
+    },
+    {
+      "pacientid": "3",
+      "medicid": "4",
+      "data": "05052021",
+      "ora": "13",
+      "aprobare": "0",
+      "id": 3
+    },
+    {
+      "pacientid": "3",
+      "medicid": "2",
+      "data": "02062021",
+      "ora": "10",
+      "aprobare": "1",
+      "id": 4
+    },
+    {
+      "pacientid": "1",
+      "medicid": "4",
+      "data": "04062021",
+      "ora": "10",
+      "aprobare": "1",
+      "id": 5
+    },
+    {
+      "pacientid": "1",
+      "medicid": "4",
+      "data": "02072021",
+      "ora": "11",
+      "aprobare": "3",
+      "id": 6
+    }
+  ]
+}

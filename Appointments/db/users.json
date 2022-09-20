@@ -1,0 +1,40 @@
+{
+  "users": [
+    {
+      "nume": "Toma",
+      "prenume": "Ionut",
+      "user": "ionut1@toma.com",
+      "pass": "1",
+      "tel": "12345678901",
+      "type": "1",
+      "id": 1
+    },
+    {
+      "nume": "Dr",
+      "prenume": "Popescu",
+      "user": "dr1@popescu.com",
+      "pass": "1",
+      "tel": "2321312312312",
+      "type": "2",
+      "id": 2
+    },
+    {
+      "nume": "Toma",
+      "prenume": "Cosmin",
+      "user": "cosmin1@toma.com",
+      "pass": "1",
+      "tel": "23243243242",
+      "type": "1",
+      "id": 3
+    },
+    {
+      "nume": "Dr",
+      "prenume": "Ionescu",
+      "user": "dr1@ionescu.com",
+      "pass": "1",
+      "tel": "34242342344343",
+      "type": "2",
+      "id": 4
+    }
+  ]
+}

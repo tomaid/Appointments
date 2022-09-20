@@ -1,0 +1,153 @@
+﻿<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="utf-8" />
+    <title>Cont</title>
+    <meta name="viewport" content="width=device-width, initial-scal=1.0" />
+    <script src="Scripts/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="Content/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="Content/bootstrap-datepicker.css" />
+    <script src="Scripts/bootstrap.min.js"></script>
+    <script src="Scripts/bootstrap-datepicker.js"></script>
+    <link type="text/css" rel="stylesheet" href="Content/font-awesome.min.css" />
+    <link type="text/css" rel="stylesheet" href="Content/appointment.css" />
+    <script src='Scripts/account.js'></script>
+    <script src='Scripts/dangling.js'></script>
+</head>
+<body>
+    <script>
+        Auth = new Auth();
+        Auth.verifyAuthAdmin();
+        danglingPointers = new DanglingPointers();
+
+    </script>
+    <input type="hidden" id="id" name="id">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
+        <a class="navbar-brand" href="/"> - Chei Straine - </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <span class="nav-link">Bine ai venit, <span id="numecomplet"></span></span>
+                </li>
+                <li class="nav-item d-lg-none d-md-none">
+                    <a class="nav-link" href="#">Listă programări</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <!-- <input class="form-control mr-sm-2" type="text" placeholder="Cautare programare" aria-label="Search" onkeyup="Filtru.filtrare()" id="cautare">
+                -->
+                <a class="btn btn-outline-danger my-2 my-sm-0" onclick="Auth.logout();">Deconectare</a>
+            </form>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="col-md-1 d-none d-md-block bg-light sidebar">
+                <div class="sidebar-sticky">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="admin.html">
+                                <i class="fa fa-home"></i>
+                                Dom. text
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">
+                                <i class="fa fa-bell"></i>
+                                Dangling Pointers
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <main class="col-md-9 ml-sm-auto col-lg-11 pt-3 px-4">
+                <h2>Dangling Pointers</h2>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="tabela_dp" class="col-form-label">Selectati tabela</label>
+                        <select name="tabela_dp" id="tabela_dp" class="form-control"  onchange="danglingPointers.cautaColoane(this.value)">
+                            <option value="">Selectați</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="coloana_dp" class="col-form-label">Alegeti coloana</label>
+                        <select name="coloana_dp" id="coloana_dp" class="form-control" onchange="danglingPointers.listareDanglingPointers(this.value)">
+                            <option value="">Selectați</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-striped table-sm" id="appointment_table">
+                        <thead>
+                            <tr>
+                                <th>Randul</th>
+                                <th>din tabela</th>
+                                <th id="numepm">nu are referinta pentru coloana</th>
+                                <th>in tabelul</th>
+                                <th id="numepm">coloana</th>
+                            </tr>
+                        </thead>
+                        <tbody id="dbtable">
+                        </tbody>
+                    </table>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modificare cheie straina</h5>
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <span id="statusmodif"></span>
+                <div class="modal-body">
+                    <form>
+                        <input type="hidden" id="f_idRand" />
+                        <input type="hidden" id="f_colRand" />
+                        <div class="form-group">
+                            <label for="f_rand" class="col-form-label">Randul:</label>
+                            <input type="text" class="form-control" id="f_rand" readonly b>
+                        </div>
+                        <div class="form-group">
+                            <label for="f_tabela" class="col-form-label">din tabela:</label>
+                            <input type="text" class="form-control" id="f_tabela" readonly b>
+                        </div>
+                        <div class="form-group">
+                            <label for="f_coloana" class="col-form-label">nu are referinta pentru coloana:</label>
+                            <input type="text" class="form-control" id="f_coloana" readonly b>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="randReferinta" class="col-form-label">Alegeti randul din tabela <span id="f_referinta"></span></label>
+                            <select name="mdl_coloana_referinta" id="randReferinta" class="form-control" onchange="danglingPointers.showButton(this.value)">
+                                >
+                            </select>
+                        </div>
+                        <span id="mdl_span_idcoloana"></span>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary group-hide" onclick="danglingPointers.ActualizareDP()" id="btnActualizare">Actualizare</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Inchide</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        danglingPointers.listDanglingPointersTables();
+
+    </script>
+</body>
+</html>

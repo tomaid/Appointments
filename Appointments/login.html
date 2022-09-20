@@ -1,0 +1,158 @@
+﻿<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="utf-8" />
+    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scal=1.0" />
+    <script src="Scripts/jquery-3.6.0.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="Content/bootstrap.min.css" />
+    <script src="Scripts/bootstrap.min.js"></script>
+    <script src='Scripts/account.js'></script>
+    <script src='Scripts/login.js'></script>
+    <script src='Scripts/inregistrare.js'></script>
+    <link type="text/css" rel="stylesheet" href="Content/font-awesome.min.css" />
+    <link type="text/css" rel="stylesheet" href="Content/login.css" />
+</head>
+<body>
+    <script>
+        new Auth();
+        Login = new Login();
+        Inregistrare = new Inregistrare();
+    </script>
+
+    <div class="container">
+        <div class="d-flex justify-content-center h-100">
+            <div class="card" id="logincard">
+                <div class="card-header">
+                    <h3>Autentificare</h3>
+                </div>
+                <div class="card-body">
+                    <form>
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-envelope" id="loginid-error"></i></span>
+                            </div>
+                            <input name="user" id="user" type="text" class="form-control" placeholder="email" onkeyup="Login.keypressEnter('user','pass')" autocomplete="off" onblur="Login.verificaEmail(this)" required>
+
+                        </div>
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-key"></i></span>
+                            </div>
+                            <input name="pass" id="pass" type="password" class="form-control" placeholder="parola" onkeyup="Login.keypressEnter('user','pass')" required>
+                        </div>
+                        <div class="form-group card-hide" id="user-login-error">
+                            <div class="input-group-prepend input-group-prepend-error">
+                                <span class="input-group-text"><i class="fa fa-exclamation-triangle"></i></span>
+                                <div class="form-control-plaintext alert-danger" id="user-login-error-message"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input value="Login" class="btn float-right login_btn" onclick="Login.verificareLogin('user','pass')" required>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="card-footer">
+                    <div class="d-flex justify-content-center links">
+
+                        <a href="#" onclick="Inregistrare.afiseazaInregistrare('1')">Înregistrare</a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="card-inreg card-hide" id="registercard">
+                <div class="card-header">
+                    <h3>
+                        Înregistrare
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <form>
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-user"></i></span>
+                            </div>
+                            <input name="inreg-nume" id="inreg-nume" type="text" class="form-control" placeholder="Introduceți numele" autocomplete="off" onkeyup="Inregistrare.insertUserEnter('inreg-user', 'inreg-pass', 'inreg-type', 'inreg-tel', 'inreg-nume', 'inreg-prenume')" required>
+
+                        </div>
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-user"></i></span>
+                            </div>
+                            <input name="inreg-prenume" id="inreg-prenume" type="text" class="form-control" placeholder="Introduceți prenumele" autocomplete="off" onkeyup="Inregistrare.insertUserEnter('inreg-user', 'inreg-pass', 'inreg-type', 'inreg-tel', 'inreg-nume', 'inreg-prenume')" required>
+
+                        </div>
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                            </div>
+                            <input name="inreg-user" id="inreg-user" type="text" class="form-control" placeholder="Introduceți email" autocomplete="off" onkeyup="Inregistrare.insertUserEnter('inreg-user', 'inreg-pass', 'inreg-type', 'inreg-tel', 'inreg-nume', 'inreg-prenume')" onblur="Inregistrare.verificaEmail(this.id)" required>
+
+                        </div>
+                        <div class="form-group card-hide" id="inreg-user-error">
+                            <div class="input-group-prepend input-group-prepend-error">
+                                <span class="input-group-text"><i class="fa fa-exclamation-triangle"></i></span>
+                                <div class="form-control-plaintext alert-danger" id="inreg-user-error-message"></div>
+                            </div>
+                        </div>
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-key"></i></span>
+                            </div>
+                            <input name="inreg-pass" id="inreg-pass" type="password" class="form-control" placeholder="Introduceți parola" onkeyup="Inregistrare.insertUserEnter('inreg-user', 'inreg-pass', 'inreg-type', 'inreg-tel', 'inreg-nume', 'inreg-prenume')" required>
+                        </div>
+                        <div class="form-group card-hide" id="inreg-pass-error">
+                            <div class="input-group-prepend input-group-prepend-error">
+                                <span class="input-group-text"><i class="fa fa-exclamation-triangle"></i></span>
+                                <div class=" form-control-plaintext alert-danger">Introduceți parola</div>
+                            </div>
+                        </div>
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-phone"></i></span>
+                            </div>
+                            <input name="inreg-tel" id="inreg-tel" type="text" class="form-control" placeholder="introduceți nr. de telefon" autocomplete="off" maxlength="14" onkeyup="Inregistrare.insertUserEnter('inreg-user', 'inreg-pass', 'inreg-type', 'inreg-tel', 'inreg-nume', 'inreg-prenume')" onblur="Inregistrare.verificaTel(this.id)" required>
+                        </div>
+                        <div class="form-group card-hide" id="inreg-tel-error">
+                            <div class="input-group-prepend input-group-prepend-error">
+                                <span class="input-group-text"><i class="fa fa-exclamation-triangle"></i></span>
+                                <div class=" form-control-plaintext alert-danger">Nr. de telefon nu este valid</div>
+                            </div>
+                        </div>
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-tag"></i></span>
+                            </div>
+                            <select name="inreg-type" id="inreg-type" class="form-control" onkeyup="Inregistrare.insertUserEnter('inreg-user', 'inreg-pass', 'inreg-type', 'inreg-tel',  'inreg-nume', 'inreg-prenume')" required>
+                                <option value="" disabled selected>Selectați tipul contului</option>
+                                <option value="1">Pacient</option>
+                                <option value="2">Medic</option>
+                            </select>
+                        </div>
+                        <div class="form-group card-hide" id="inreg-type-error">
+                            <div class="input-group-prepend input-group-prepend-error">
+                                <span class="input-group-text"><i class="fa fa-exclamation-triangle"></i></span>
+                                <div class="form-control form-control-plaintext alert-danger"  id="inreg-type-error-message">Alegeți tipul contului</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input value="Inregistrare" class="btn float-right login_btn" onclick="Inregistrare.insertUser('inreg-user', 'inreg-pass', 'inreg-type', 'inreg-tel', 'inreg-nume', 'inreg-prenume')" required>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="height-card"></div>
+                <div class="card-footer">
+                    <div class="d-flex justify-content-center links">
+
+                        <a href="#" onclick="Inregistrare.afiseazaInregistrare()">Înapoi la autentificare</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
