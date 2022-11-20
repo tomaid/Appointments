@@ -1,3 +1,2 @@
 # Appointments
-Este o aplicație pentru crearea și gestionarea programărilor medicale.
-Backend-ul aplicației a fost dezvotat in PHP și frontend-ul in Javascript.
+Aplicația a fost dezvoltată în PHP și Javascript. Ca SGBD am folosit MySQL. Este un mic proiect de laborator și permite programarea persoanelor pentru consultații la medic. Medicul aprobă sau refuză programarea.
